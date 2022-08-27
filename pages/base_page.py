@@ -13,7 +13,7 @@ class BasePage():
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
-        except (NoSuchElementException):   #except(Наименование исключения - выбрасывает Пайтон при ошибке - можно подставлять - мб можно вообще без него - делал так давно))
+        except (NoSuchElementException):   # except(Наименование исключения - выбрасывает Пайтон при ошибке - можно подставлять - мб можно вообще без него - делал так давно))
             return False
         return True
 
