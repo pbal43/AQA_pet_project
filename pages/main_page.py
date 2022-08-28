@@ -10,3 +10,6 @@ class MainPage(BasePage):
     def go_to_login_page(self):
         login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         login_link.click()
+        """Допустим, добавили alert, можно записать обработку здесь, а не в каждом тесте"""
+        alert = self.browser.switch_to.alert
+        alert.accept()
