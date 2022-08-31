@@ -5,7 +5,8 @@ def test_guest_can_go_to_login_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
     page.open()
-    """Для перехода по страницам нижеследующую строку пишем в переменную login page и пишем еще строку"""
+    """Для перехода по страницам"""
+    page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
 
