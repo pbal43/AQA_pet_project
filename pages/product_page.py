@@ -28,3 +28,11 @@ class ProductPage(BasePage):
         print('Book: "' + name_in_message_cart_parsed + '" added to cart with correct name')
         assert price_in_message_cart_parsed == self.parsed_price, "Price isn't correct"
         print('Book price is correct and = ', price_in_message_cart_parsed)
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should be disappeared"
