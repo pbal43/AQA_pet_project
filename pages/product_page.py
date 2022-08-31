@@ -3,10 +3,12 @@ from .locators import ProductPageLocators
 
 class ProductPage(BasePage):
 
+    """В метод ниже можно добавить book_id из отдельного файла с наименованием и ценой для сравнения с парсируемыми"""
     def should_be_this_product(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)
-        parsed_product_name = product_name.text
-        assert parsed_product_name == "The shellcoder's handbook", "It's not an expected book"
+        self.parsed_product_name = product_name.text
+        price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
+        self.parsed_price = price.text
 
     def should_be_add_button(self):
         assert self.is_element_present(*ProductPageLocators.ADD_BUTTON), "There isn't add button"
@@ -16,7 +18,13 @@ class ProductPage(BasePage):
         add_cart_button.click()
         self.solve_quiz_and_get_code()
 
-    # def checking_cart():
-    #     name_in_cart =
-    #
-    #     assert product_name = name_in_cart
+    def checking_messages_cart(self):
+        name_in_message_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_CART_MESSAGE)
+        name_in_message_cart_parsed = name_in_message_cart.text
+        price_in_message_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_CART_MESSAGE)
+        price_in_message_cart_parsed = price_in_message_cart.text
+        # print(name_in_message_cart_parsed, self.parsed_product_name, price_in_message_cart_parsed, self.parsed_price) - совпадает, даже с валютой (можно сравнивать чисто интеджер)
+        assert name_in_message_cart_parsed == self.parsed_product_name, "Name isn't correct"
+        print('Book: "' + name_in_message_cart_parsed + '" added to cart with correct name')
+        assert price_in_message_cart_parsed == self.parsed_price, "Price isn't correct"
+        print('Book price is correct and = ', price_in_message_cart_parsed)
