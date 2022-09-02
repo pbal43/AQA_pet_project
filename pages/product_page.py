@@ -13,10 +13,10 @@ class ProductPage(BasePage):
     def should_be_add_button(self):
         assert self.is_element_present(*ProductPageLocators.ADD_BUTTON), "There isn't add button"
 
-    def add_to_cart_with_sale(self):
+    def add_to_cart(self):
         add_cart_button = self.browser.find_element(*ProductPageLocators.ADD_BUTTON)
         add_cart_button.click()
-        self.solve_quiz_and_get_code()
+        # self.solve_quiz_and_get_code()
 
     def checking_messages_cart(self):
         name_in_message_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_CART_MESSAGE)

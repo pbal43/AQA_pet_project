@@ -1,18 +1,18 @@
 from pages.product_page import ProductPage
 import time
-import pytest
+# import pytest
 
 "Проверка по 1 адресу"
 
-def test_guest_can_add_product_to_basket(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-    product_page = ProductPage(browser, link)
-    product_page.open()
-    product_page.should_be_this_product()
-    product_page.should_be_add_button()
-    product_page.add_to_cart_with_sale()
-    time.sleep(25)
-    product_page.checking_messages_cart()
+# def test_guest_can_add_product_to_basket(browser):
+#     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+#     product_page = ProductPage(browser, link)
+#     product_page.open()
+#     product_page.should_be_this_product()
+#     product_page.should_be_add_button()
+#     product_page.add_to_cart()
+#     time.sleep(60)
+#     product_page.checking_messages_cart()
 
 
 "Проверка по нескольким адресам"
@@ -53,3 +53,25 @@ def test_guest_can_add_product_to_basket(browser):
 #     product_page.add_to_cart_with_sale()
 #     # time.sleep(5)
 #     product_page.checking_messages_cart()
+
+
+
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_to_cart()
+    product_page.should_not_be_success_message()
+
+def test_guest_cant_see_success_message(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.should_not_be_success_message()
+
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_to_cart()
+    product_page.should_disappear_success_message()
