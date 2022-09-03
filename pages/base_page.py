@@ -2,6 +2,7 @@ from selenium.common.exceptions import NoSuchElementException, NoAlertPresentExc
 import math
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from .locators import BasePageLocators
 
 
 class BasePage():
@@ -15,6 +16,7 @@ class BasePage():
 
     def is_element_present(self, how, what):
         try:
+            self.browser.implicitly_wait(5)
             self.browser.find_element(how, what)
         except NoSuchElementException:   # except(Наименование исключения - выбрасывает Пайтон при ошибке - можно подставлять - мб можно вообще без него - делал так давно))
             return False
@@ -59,3 +61,14 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def go_to_cart(self):
+        link = self.browser.find_element(*BasePageLocators.CART_LINK)
+        link.click()
