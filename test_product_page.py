@@ -112,7 +112,6 @@ import random
 
 class TestUserAddToBasketFromProductPage():
 
-
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
         link = "http://selenium1py.pythonanywhere.com/"
