@@ -5,7 +5,7 @@ from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
 
 import time
-import random
+
 # Можно добавить имена - для генерации email и потом заморозить
 
 "Проверка по 1 адресу"

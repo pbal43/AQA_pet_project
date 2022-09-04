@@ -1,4 +1,4 @@
-from pages.login_page import *
+from .pages.login_page import *
 
 
 def test_guest_on_the_login_page(browser):
