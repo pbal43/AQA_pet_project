@@ -1,6 +1,6 @@
-from pages.main_page import *
-from pages.login_page import LoginPage
-from pages.basket_page import BasketPage
+from .pages.main_page import *
+from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 import pytest
 
 """Объединяем тесты в класс и добавляем self в тесты - поле чего можно запустить командой -m login_guest"""
