@@ -8,16 +8,17 @@ import time
 import random
 # Можно добавить имена - для генерации email и потом заморозить
 
-# "Проверка по 1 адресу"
-#
-# def test_guest_can_add_product_to_basket(browser):
-#     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-#     product_page = ProductPage(browser, link)
-#     product_page.open()
-#     product_page.should_be_this_product()
-#     product_page.should_be_add_button()
-#     product_page.add_to_cart()
-#     product_page.checking_messages_cart()
+"Проверка по 1 адресу"
+
+@pytest.mark.need_review
+def test_guest_can_add_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.should_be_this_product()
+    product_page.should_be_add_button()
+    product_page.add_to_cart()
+    product_page.checking_messages_cart()
 #
 #
 # "Проверка по нескольким адресам"
@@ -45,19 +46,19 @@ import random
 #     time.sleep(5)
 #     product_page.checking_messages_cart()
 
-"""Упал на offer7 => пропускаем тест с этим урлом и пробуем с 2 другими для примера"""
-
-@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
-                                  pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=pytest.mark.xfail(reason="fixing")),
-                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
-def test_guest_can_add_product_to_basket(browser, link):
-    product_page = ProductPage(browser, link)
-    product_page.open()
-    product_page.should_be_this_product()
-    product_page.should_be_add_button()
-    product_page.add_to_cart()
-    # time.sleep(5)
-    product_page.checking_messages_cart()
+# """Упал на offer7 => пропускаем тест с этим урлом и пробуем с 2 другими для примера"""
+#
+# @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
+#                                   pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=pytest.mark.xfail(reason="fixing")),
+#                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
+# def test_guest_can_add_product_to_basket(browser, link):
+#     product_page = ProductPage(browser, link)
+#     product_page.open()
+#     product_page.should_be_this_product()
+#     product_page.should_be_add_button()
+#     product_page.add_to_cart()
+#     # time.sleep(5)
+#     product_page.checking_messages_cart()
 
 """Проверка успешных сообщений после добавления товара в корзину"""
 
@@ -89,6 +90,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -96,6 +98,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 """Переход в корзину и проверки"""
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     page = ProductPage(browser, link)
@@ -128,6 +131,7 @@ class TestUserAddToBasketFromProductPage():
         product_page.open()
         product_page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
         product_page = ProductPage(browser, link)
